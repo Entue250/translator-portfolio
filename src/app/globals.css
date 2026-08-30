@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — "Certified" system
+   A translator's world: sealed documents, visa stamps, ink,
+   parchment, interlinear glosses. Dark ink shell + paper
+   document cards + gold wax-seal & stamp-ink accents.
+   ============================================================ */
+
+:root {
+  /* Ink shell (page background) */
+  --ink-950: #0a0e1a;
+  --ink-900: #0f1526;
+  --ink-800: #161d33;
+  --ink-700: #202a45;
+  --ink-line: #2a3454;
+
+  /* Parchment (document / card surfaces) */
+  --paper-100: #faf6ea;
+  --paper-200: #f1ead4;
+  --paper-300: #e6dcbf;
+  --paper-ink: #2a2418;
+
+  /* Accents */
+  --seal-gold: #c79a44;
+  --seal-gold-bright: #e0b96a;
+  --stamp-green: #1f6f5c;
+  --stamp-green-bright: #2f9179;
+  --stamp-red: #9c3b3b;
+
+  /* Text on ink */
+  --text-hi: #f3f1e9;
+  --text-mid: #b9c0d6;
+  --text-low: #7c84a0;
+
+  --radius-doc: 4px;
+}
+
+@theme inline {
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-ink-line: var(--ink-line);
+
+  --color-paper-100: var(--paper-100);
+  --color-paper-200: var(--paper-200);
+  --color-paper-300: var(--paper-300);
+  --color-paper-ink: var(--paper-ink);
+
+  --color-seal-gold: var(--seal-gold);
+  --color-seal-gold-bright: var(--seal-gold-bright);
+  --color-stamp-green: var(--stamp-green);
+  --color-stamp-green-bright: var(--stamp-green-bright);
+  --color-stamp-red: var(--stamp-red);
+
+  --color-text-hi: var(--text-hi);
+  --color-text-mid: var(--text-mid);
+  --color-text-low: var(--text-low);
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-plex-sans);
+  --font-stamp: var(--font-plex-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink-950);
+  color: var(--text-hi);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(199, 154, 68, 0.08), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 20%, rgba(31, 111, 92, 0.10), transparent 60%);
+}
+
+::selection {
+  background: var(--seal-gold);
+  color: var(--ink-950);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--seal-gold-bright);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Signature motifs
+   ============================================================ */
+
+.paper {
+  background:
+    repeating-linear-gradient(180deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 28px),
+    linear-gradient(180deg, var(--paper-100), var(--paper-200));
+  color: var(--paper-ink);
+  border-radius: var(--radius-doc);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 18px 40px -18px rgba(0,0,0,0.55),
+    0 2px 6px rgba(0,0,0,0.25);
+}
+
+.perforated-bottom {
+  position: relative;
+}
+.perforated-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 10px;
+  background-image: radial-gradient(circle at center, var(--ink-950) 3px, transparent 3.5px);
+  background-size: 16px 10px;
+  background-repeat: repeat-x;
+  background-position: 8px 0;
+}
+
+.stamp-ring {
+  border: 2px solid currentColor;
+  border-radius: 9999px;
+  position: relative;
+}
+.stamp-ring::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  opacity: 0.55;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+.font-stamp {
+  font-family: var(--font-stamp), ui-monospace, monospace;
+  letter-spacing: 0.08em;
+}
