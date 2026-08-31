@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -69,18 +70,22 @@ export function Nav({ name, resumeUrl }: { name: string; resumeUrl?: string | nu
           >
             Request a quote
           </a>
+          <ThemeToggle />
         </div>
 
-        <button
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={cn("h-px w-6 bg-text-hi transition-transform", open && "translate-y-2 rotate-45")} />
-          <span className={cn("h-px w-6 bg-text-hi transition-opacity", open && "opacity-0")} />
-          <span className={cn("h-px w-6 bg-text-hi transition-transform", open && "-translate-y-2 -rotate-45")} />
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="flex flex-col gap-1.5 p-2"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className={cn("h-px w-6 bg-text-hi transition-transform", open && "translate-y-2 rotate-45")} />
+            <span className={cn("h-px w-6 bg-text-hi transition-opacity", open && "opacity-0")} />
+            <span className={cn("h-px w-6 bg-text-hi transition-transform", open && "-translate-y-2 -rotate-45")} />
+          </button>
+        </div>
       </Container>
 
       {open && (
