@@ -36,6 +36,32 @@
   --radius-doc: 4px;
 }
 
+/* Light theme — same brand tokens, inverted shell. Activated via
+   data-theme="light" on <html> (see ThemeToggle + the inline
+   FOUC-prevention script in layout.tsx). */
+:root[data-theme="light"] {
+  --ink-950: #f7f1e1;
+  --ink-900: #efe6cd;
+  --ink-800: #e6dab8;
+  --ink-700: #dccca0;
+  --ink-line: #d3c29a;
+
+  --paper-100: #fffdf8;
+  --paper-200: #f8f1de;
+  --paper-300: #ecdfc0;
+  --paper-ink: #2a2418;
+
+  --seal-gold: #a97f28;
+  --seal-gold-bright: #8a6420;
+  --stamp-green: #1a5c4c;
+  --stamp-green-bright: #14493c;
+  --stamp-red: #8a3232;
+
+  --text-hi: #211c11;
+  --text-mid: #4a4330;
+  --text-low: #7a7156;
+}
+
 @theme inline {
   --color-ink-950: var(--ink-950);
   --color-ink-900: var(--ink-900);
@@ -78,7 +104,14 @@ body {
 
 ::selection {
   background: var(--seal-gold);
-  color: var(--ink-950);
+  color: #1a1408;
+}
+
+/* Smooth crossfade when the theme toggle flips data-theme. */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
