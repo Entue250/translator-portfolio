@@ -48,6 +48,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable} h-full`}
+      suppressHydrationWarning
     >
       <head>
         {/* Set the theme before first paint to avoid a flash of the wrong theme. */}
